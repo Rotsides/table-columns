@@ -1,11 +1,11 @@
-# @acme/table-columns
+# @rotsides/table-columns
 
 Thin helpers around `@tanstack/react-table` column definitions.
 
 ## Install
 
 ```bash
-pnpm add @acme/table-columns
+pnpm add @rotsides/table-columns
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ import {
   formattedColumn,
   displayColumn,
   type TableColumnConfig,
-} from '@acme/table-columns';
+} from '@rotsides/table-columns';
 
 const columns = [
   textColumn<Employee>('email', 'Email'),
