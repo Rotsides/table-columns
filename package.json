@@ -1,20 +1,25 @@
 {
   "name": "@rotsides/table-columns",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "files": ["dist"],
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.mts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.mts",
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     }
   },
+  "typesVersions": {
+    "*": {
+      "*": ["dist/index.d.ts"]
+    }
+  },
   "scripts": {
-    "build": "tsdown",
+    "build": "tsdown && cp dist/index.d.mts dist/index.d.ts",
     "dev": "tsdown --watch",
     "lint": "tsc --noEmit"
   },
