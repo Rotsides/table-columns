@@ -1,8 +1,8 @@
-import type { JSX } from 'react';
-import type { Row, Table } from '@tanstack/react-table';
+import type { JSX } from "react";
+import type { Row, Table } from "@tanstack/react-table";
 
 export interface TableColumnConfig<T> {
-  type: 'display' | 'accessor';
+  type: "display" | "accessor";
   id: keyof T | string;
   header?: string;
   size?: number;

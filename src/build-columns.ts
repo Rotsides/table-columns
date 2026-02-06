@@ -1,6 +1,6 @@
-import { ColumnDef, createColumnHelper } from '@tanstack/react-table';
-import type { ReactNode } from 'react';
-import { TableColumnConfig } from './types';
+import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
+import type { ReactNode } from "react";
+import { TableColumnConfig } from "./types";
 
 export type FallbackFn = (value: unknown) => ReactNode;
 
@@ -14,17 +14,21 @@ export function buildColumns<T>(
   options?: BuildColumnsOptions<T>,
 ): ColumnDef<T>[] {
   const columnHelper = createColumnHelper<T>();
-  const fallback = options?.fallback ?? ((value) => (value == null ? '—' : value));
+  const fallback =
+    options?.fallback ?? ((value) => (value == null ? "—" : value));
 
   const resolved = columns.map((column) => {
     const columnKey = column.id as string;
 
-    if (column.type === 'display') {
+    if (column.type === "display") {
       return columnHelper.display({
         id: columnKey,
-        header: ({ table }) => column.headerTemplate?.(table) ?? column.header ?? null,
+        header: ({ table }) =>
+          column.headerTemplate?.(table) ?? column.header ?? null,
         cell: ({ row, getValue }) =>
-          column.cellTemplate ? column.cellTemplate(row, getValue()) : fallback(getValue()),
+          column.cellTemplate
+            ? column.cellTemplate(row, getValue())
+            : fallback(getValue()),
         enableSorting: column.sortable ?? false,
         enableHiding: column.enableHiding,
         size: column.size ?? 100,
@@ -37,7 +41,9 @@ export function buildColumns<T>(
       id: columnKey,
       header: column.header,
       cell: ({ row, getValue }) =>
-        column.cellTemplate ? column.cellTemplate(row, getValue()) : fallback(getValue()),
+        column.cellTemplate
+          ? column.cellTemplate(row, getValue())
+          : fallback(getValue()),
       size: column.size ?? 150,
       enableSorting: column.sortable ?? false,
       enableHiding: column.enableHiding,

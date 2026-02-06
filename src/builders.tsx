@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { TableColumnConfig } from './types';
+import { ReactNode } from "react";
+import { TableColumnConfig } from "./types";
 
 const withDefaultMeta = <T,>(
   header: string,
@@ -15,7 +15,7 @@ export const textColumn = <T,>(
   header: string,
   options?: Partial<TableColumnConfig<T>>,
 ): TableColumnConfig<T> => ({
-  type: 'accessor',
+  type: "accessor",
   id,
   header,
   ...withDefaultMeta<T>(header, options),
@@ -27,7 +27,7 @@ export const formattedColumn = <T,>(
   format: (value: unknown) => ReactNode,
   options?: Partial<TableColumnConfig<T>>,
 ): TableColumnConfig<T> => ({
-  type: 'accessor',
+  type: "accessor",
   id,
   header,
   cellTemplate: (_row, value) => <span>{format(value)}</span>,
@@ -37,10 +37,23 @@ export const formattedColumn = <T,>(
 export const displayColumn = <T,>(
   id: keyof T | string,
   header: string,
-  render: NonNullable<TableColumnConfig<T>['cellTemplate']>,
+  render: NonNullable<TableColumnConfig<T>["cellTemplate"]>,
   options?: Partial<TableColumnConfig<T>>,
 ): TableColumnConfig<T> => ({
-  type: 'display',
+  type: "display",
+  id,
+  header,
+  cellTemplate: render,
+  ...withDefaultMeta<T>(header, options),
+});
+
+export const accessorColumn = <T,>(
+  id: keyof T | string,
+  header: string,
+  render: NonNullable<TableColumnConfig<T>["cellTemplate"]>,
+  options?: Partial<TableColumnConfig<T>>,
+): TableColumnConfig<T> => ({
+  type: "accessor",
   id,
   header,
   cellTemplate: render,
